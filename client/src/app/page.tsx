@@ -164,7 +164,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="card overflow-hidden">
               <div
-                className="h-48 bg-cover bg-center"
+                className="h-48 bg-contain bg-center bg-no-repeat bg-gray-100"
                 style={{ backgroundImage: "url('/images/imagesconservation.jpg')" }}
               ></div>
               <div className="p-6">
@@ -185,7 +185,7 @@ export default function HomePage() {
             
             <div className="card overflow-hidden">
               <div
-                className="h-48 bg-cover bg-center"
+                className="h-48 bg-contain bg-center bg-no-repeat bg-gray-100"
                 style={{ backgroundImage: "url('/images/imageseducation.jpg')" }}
               ></div>
               <div className="p-6">
@@ -206,7 +206,7 @@ export default function HomePage() {
             
             <div className="card overflow-hidden">
               <div
-                className="h-48 bg-cover bg-center"
+                className="h-48 bg-contain bg-center bg-no-repeat bg-gray-100"
                 style={{ backgroundImage: "url('/images/imagesfarming.jpg')" }}
               ></div>
               <div className="p-6">
