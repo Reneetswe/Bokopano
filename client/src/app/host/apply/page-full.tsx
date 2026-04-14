@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
-import { getHostByUserId, createHost, createHostProfile, createHostVerification, createHostOpportunity, createHostReferences } from '@/lib/supabase'
+import { getHostByUserId } from '@/lib/supabase'
 import { HostApplicationForm } from '@/components/host/HostApplicationForm'
 
 export default function HostApplyPage() {
