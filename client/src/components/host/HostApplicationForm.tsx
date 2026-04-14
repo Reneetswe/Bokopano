@@ -42,7 +42,7 @@ export function HostApplicationForm({ userId, existingHost, onComplete }: HostAp
   const [uploadedFiles, setUploadedFiles] = useState<Record<string, string>>({})
   const [customErrors, setCustomErrors] = useState<Record<string, string>>({})
 
-  const { register, handleSubmit, watch, trigger, formState: { errors: formErrors } } = useForm({
+  const { register, handleSubmit, watch, trigger, formState: { errors: formErrors } } = useForm<Record<string, any>>({
     mode: 'onChange',
     defaultValues: existingHost ? {
       // Pre-fill existing data if available
