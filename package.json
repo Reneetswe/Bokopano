@@ -1,0 +1,22 @@
+{
+  "name": "bokopano",
+  "version": "1.0.0",
+  "description": "Volunteer and work-exchange platform in Africa",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:landing\" \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:full": "concurrently \"npm run dev:landing\" \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:landing": "node scripts/serve-landing.js",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd backend && npm run dev",
+    "build": "cd client && npm run build",
+    "start": "cd client && npm start",
+    "install:all": "npm install && cd client && npm install && cd ../backend && npm install"
+  },
+  "keywords": ["volunteer", "work-exchange", "africa", "supabase", "nextjs"],
+  "author": "Bokopano Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

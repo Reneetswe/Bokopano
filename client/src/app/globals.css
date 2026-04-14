@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --clay: #C4622D;
+  --clay-light: #D4784A;
+  --clay-dark: #8B3E1A;
+  --earth: #2A1F14;
+  --earth-medium: #4A3728;
+  --savanna: #E8D5A3;
+  --savanna-light: #F5EDD8;
+  --leaf: #3B5E3A;
+  --leaf-light: #5A8059;
+  --ivory: #FAF7F0;
+  --warm: #8A7E72;
+  --charcoal: #1C1C1C;
+}
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  
+  body {
+    @apply bg-ivory text-charcoal font-sans;
+    font-family: 'DM Sans', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  
+  .btn-primary {
+    @apply bg-clay text-white hover:bg-clay-dark;
+  }
+  
+  .btn-secondary {
+    @apply bg-savanna text-earth hover:bg-savanna-light;
+  }
+  
+  .btn-outline {
+    @apply border border-clay text-clay hover:bg-clay hover:text-white;
+  }
+  
+  .btn-large {
+    @apply px-8 py-3 text-base;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200;
+  }
+  
+  .status-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .form-group {
+    @apply space-y-2;
+  }
+  
+  .form-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-clay focus:border-transparent;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700;
+  }
+  
+  .form-error {
+    @apply text-sm text-red-600 mt-1;
+  }
+  
+  .progress-bar {
+    @apply w-full bg-gray-200 rounded-full h-2;
+  }
+  
+  .progress-fill {
+    @apply bg-clay h-2 rounded-full transition-all duration-300;
+  }
+  
+  .step-indicator {
+    @apply flex items-center justify-center w-8 h-8 rounded-full border-2 border-gray-300 text-sm font-medium;
+  }
+  
+  .step-indicator.active {
+    @apply border-clay bg-clay text-white;
+  }
+  
+  .step-indicator.completed {
+    @apply border-clay bg-clay text-white;
+  }
+}
+
+@layer utilities {
+  .text-clay {
+    color: var(--clay);
+  }
+  
+  .text-earth {
+    color: var(--earth);
+  }
+  
+  .text-leaf {
+    color: var(--leaf);
+  }
+  
+  .bg-clay {
+    background-color: var(--clay);
+  }
+  
+  .bg-earth {
+    background-color: var(--earth);
+  }
+  
+  .bg-leaf {
+    background-color: var(--leaf);
+  }
+  
+  .bg-ivory {
+    background-color: var(--ivory);
+  }
+  
+  .bg-savanna {
+    background-color: var(--savanna);
+  }
+}

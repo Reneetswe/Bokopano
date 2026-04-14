@@ -1,0 +1,462 @@
+/* Responsive Design */
+
+/* Large Tablets and Small Desktops */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .navbar {
+        padding: 0 20px;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .opportunities-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 64px;
+        flex-direction: column;
+        background: white;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: var(--shadow);
+        padding: 20px 0;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-menu li {
+        margin: 16px 0;
+    }
+    
+    .hero {
+        min-height: 90vh;
+        padding: 80px 0;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.125rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-large {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .about-card {
+        padding: 30px 20px;
+    }
+    
+    .opportunities-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .steps-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 24px;
+    }
+    
+    .step-card {
+        padding: 30px 20px;
+    }
+    
+    .contact-form {
+        padding: 30px 20px;
+    }
+    
+    .section-cta {
+        padding: 30px 20px;
+    }
+    
+    .footer {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    .navbar {
+        padding: 0 16px;
+        height: 60px;
+    }
+    
+    .nav-logo h1 {
+        font-size: 20px;
+    }
+    
+    .hero {
+        min-height: 80vh;
+        padding: 60px 0;
+    }
+    
+    .hero-content {
+        padding: 0 16px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 32px;
+    }
+    
+    .hero-actions {
+        gap: 12px;
+    }
+    
+    .btn {
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+    
+    .btn-large {
+        padding: 14px 24px;
+        font-size: 15px;
+    }
+    
+    .section {
+        padding: 40px 0;
+    }
+    
+    .section-header {
+        margin-bottom: 40px;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .about-card {
+        padding: 24px 16px;
+    }
+    
+    .about-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 16px;
+    }
+    
+    .about-card h3 {
+        font-size: 1.25rem;
+    }
+    
+    .opportunity-card {
+        margin: 0 -16px;
+        border-radius: 0;
+    }
+    
+    .opportunity-content {
+        padding: 20px 16px;
+    }
+    
+    .opportunity-title {
+        font-size: 1.125rem;
+    }
+    
+    .opportunity-details {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .step-card {
+        padding: 24px 16px;
+    }
+    
+    .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .step-card h3 {
+        font-size: 1.125rem;
+    }
+    
+    .contact-info {
+        gap: 24px;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+    }
+    
+    .contact-form {
+        padding: 24px 16px;
+        margin: 0 -16px;
+        border-radius: 0;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 14px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .section-cta {
+        padding: 24px 16px;
+        margin: 40px -16px;
+        border-radius: 0;
+    }
+    
+    .footer {
+        padding: 30px 0 16px;
+    }
+    
+    .footer-brand h3 {
+        font-size: 1.25rem;
+    }
+    
+    .footer-brand p {
+        font-size: 0.875rem;
+    }
+    
+    .footer-column h4 {
+        font-size: 0.875rem;
+    }
+    
+    .footer-column a {
+        font-size: 0.875rem;
+    }
+    
+    .footer-bottom {
+        font-size: 0.75rem;
+    }
+}
+
+/* Extra Small Mobile Phones */
+@media (max-width: 320px) {
+    .hero-title {
+        font-size: 1.75rem;
+    }
+    
+    .btn-large {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .about-icon,
+    .step-number {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Landscape Orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+        padding: 40px 0;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        margin-bottom: 16px;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.875rem;
+        margin-bottom: 24px;
+    }
+    
+    .navbar {
+        height: 56px;
+    }
+    
+    .nav-menu {
+        top: 56px;
+    }
+}
+
+/* High Resolution Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .about-icon,
+    .step-number,
+    .contact-icon {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .hero-background {
+        transform: none !important;
+    }
+}
+
+/* Dark Mode Support (Future Enhancement) */
+@media (prefers-color-scheme: dark) {
+    /* This can be used for future dark mode implementation */
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .hamburger,
+    .hero-actions,
+    .contact-form,
+    .footer {
+        display: none;
+    }
+    
+    .hero {
+        min-height: auto;
+        padding: 40px 0;
+    }
+    
+    .section {
+        padding: 20px 0;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .about-card,
+    .opportunity-card,
+    .step-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+/* Accessibility Improvements */
+@media (hover: none) and (pointer: coarse) {
+    .btn:hover,
+    .about-card:hover,
+    .opportunity-card:hover,
+    .step-card:hover {
+        transform: none;
+    }
+    
+    .btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Focus Styles for Better Accessibility */
+.btn:focus,
+.nav-link:focus,
+input:focus,
+textarea:focus {
+    outline: 2px solid var(--clay);
+    outline-offset: 2px;
+}
+
+/* Large Screens */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+    
+    .hero-title {
+        font-size: 4.5rem;
+    }
+    
+    .section-title {
+        font-size: 3.5rem;
+    }
+}
+
+/* Ultra Wide Screens */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .hero-title {
+        font-size: 5rem;
+    }
+    
+    .section-title {
+        font-size: 4rem;
+    }
+}
