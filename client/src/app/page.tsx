@@ -71,13 +71,17 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section
+        className="relative py-20 px-4 sm:px-6 lg:px-8 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/imageshero-bg.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-black/35" />
+        <div className="relative max-w-7xl mx-auto">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-earth mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               Work. Grow. Belong.
             </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-100 mb-8 max-w-3xl mx-auto">
               Discover meaningful volunteer and work-exchange opportunities across Africa. 
               Trade your skills for accommodation, food, and unforgettable experiences.
             </p>
@@ -159,7 +163,10 @@ export default function HomePage() {
           
           <div className="grid md:grid-cols-3 gap-8">
             <div className="card overflow-hidden">
-              <div className="h-48 bg-savanna"></div>
+              <div
+                className="h-48 bg-cover bg-center"
+                style={{ backgroundImage: "url('/images/imagesconservation.jpg')" }}
+              ></div>
               <div className="p-6">
                 <div className="text-sm text-gray-500 mb-2">Maun, Botswana</div>
                 <h3 className="text-xl font-semibold mb-2">Wildlife Conservation Assistant</h3>
@@ -177,7 +184,10 @@ export default function HomePage() {
             </div>
             
             <div className="card overflow-hidden">
-              <div className="h-48 bg-leaf"></div>
+              <div
+                className="h-48 bg-cover bg-center"
+                style={{ backgroundImage: "url('/images/imageseducation.jpg')" }}
+              ></div>
               <div className="p-6">
                 <div className="text-sm text-gray-500 mb-2">Cape Town, South Africa</div>
                 <h3 className="text-xl font-semibold mb-2">Community Education Support</h3>
@@ -195,7 +205,10 @@ export default function HomePage() {
             </div>
             
             <div className="card overflow-hidden">
-              <div className="h-48 bg-clay"></div>
+              <div
+                className="h-48 bg-cover bg-center"
+                style={{ backgroundImage: "url('/images/imagesfarming.jpg')" }}
+              ></div>
               <div className="p-6">
                 <div className="text-sm text-gray-500 mb-2">Victoria Falls, Zimbabwe</div>
                 <h3 className="text-xl font-semibold mb-2">Eco-Tourism Development</h3>
