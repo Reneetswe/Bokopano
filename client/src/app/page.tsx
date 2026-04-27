@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 export default function HomePage() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      window.location.href = 'http://localhost:8080'
+      window.location.href = '/home.html'
     }
   }, [])
 

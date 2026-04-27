@@ -286,7 +286,7 @@ export default function OpportunitiesPage() {
       {/* ══ TOP NAV BAR ══ */}
       <div style={{ backgroundColor: '#fff', borderBottom: '1px solid #e6e6e6', padding: '12px 0' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#111', fontSize: '14px', fontWeight: 500 }}>
+          <a href="/home.html" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#111', fontSize: '14px', fontWeight: 500 }}>
             <svg style={{ width: '20px', height: '20px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
