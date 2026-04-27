@@ -51,13 +51,23 @@ export default function VolunteerRegisterPage() {
     setLoading(true)
 
     try {
-      const { error: signUpError } = await signUp(email, password, {
+      const { data, error: signUpError } = await signUp(email, password, {
         full_name: fullName,
         country,
         account_type: 'volunteer',
       })
 
       if (signUpError) throw signUpError
+
+      // Detect existing user: Supabase returns user with empty identities array
+      // when the email is already registered (silent return for security).
+      const identitiesLength = data?.user?.identities?.length ?? 0
+      if (data?.user && identitiesLength === 0) {
+        setError(
+          'This email is already registered. Please sign in instead, or use a different email.'
+        )
+        return
+      }
 
       setSuccess(true)
     } catch (err: any) {
@@ -73,7 +83,10 @@ export default function VolunteerRegisterPage() {
         <div className="max-w-xl mx-auto bg-white rounded-xl shadow-lg p-8 text-center">
           <h1 className="text-2xl font-bold text-earth mb-3">Account Created</h1>
           <p className="text-gray-700 mb-6">Please check your email to verify your account before signing in.</p>
-          <Link href="/" className="btn btn-primary">Back to Home</Link>
+          <div className="flex gap-3 justify-center">
+            <Link href="/volunteer/login" className="btn btn-primary">Sign In</Link>
+            <Link href="/" className="btn btn-outline">Back to Home</Link>
+          </div>
         </div>
       </div>
     )
@@ -126,6 +139,13 @@ export default function VolunteerRegisterPage() {
             {loading ? 'Creating account...' : 'Create Volunteer Account'}
           </button>
         </form>
+
+        <div className="mt-6 text-center text-sm text-gray-600">
+          Already have an account?{' '}
+          <Link href="/volunteer/login" className="text-clay font-medium hover:underline">
+            Sign in here
+          </Link>
+        </div>
       </div>
     </div>
   )

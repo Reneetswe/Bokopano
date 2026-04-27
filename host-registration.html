@@ -449,7 +449,7 @@
                 // Redirect to host application form
                 showSuccess('Signed in successfully! Redirecting to host application...');
                 setTimeout(() => {
-                    window.location.href = '/become-a-host';
+                    window.location.href = 'http://localhost:3000/become-a-host';
                 }, 1500);
             } catch (error) {
                 showError(error.message || 'Failed to sign in. Please check your credentials.');

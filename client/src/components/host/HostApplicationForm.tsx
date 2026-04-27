@@ -236,8 +236,8 @@ export function HostApplicationForm({ userId, existingHost, onComplete }: HostAp
         await createHostReference(referenceData)
       }
 
-      // Update host status to SUBMITTED
-      await updateHost(hostRecord.id, { status: 'SUBMITTED' })
+      // Update host status to APPROVED (auto-approve for now)
+      await updateHost(hostRecord.id, { status: 'APPROVED' })
 
       onComplete()
     } catch (error) {

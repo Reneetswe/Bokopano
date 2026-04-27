@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { HostApplicationForm } from '@/components/host/HostApplicationForm'
 import { getCurrentUser, getHostByUserId, signIn, signUp, supabase } from '@/lib/supabase'
 
@@ -20,6 +21,7 @@ const southernAfricanCountries = [
 ]
 
 export default function BecomeHostPage() {
+  const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [authLoading, setAuthLoading] = useState(false)
   const [userId, setUserId] = useState<string | null>(null)
@@ -82,7 +84,14 @@ export default function BecomeHostPage() {
       if (user) {
         setUserId(user.id)
         const { data } = await getHostByUserId(user.id)
-        if (data) setExistingHost(data)
+        if (data) {
+          // If already approved, redirect straight to dashboard
+          if (data.status === 'APPROVED') {
+            router.push('/host/dashboard')
+            return
+          }
+          setExistingHost(data)
+        }
       }
 
       setLoading(false)
@@ -157,7 +166,14 @@ export default function BecomeHostPage() {
         setUserId(signedInUserId)
 
         const { data: host } = await getHostByUserId(signedInUserId)
-        if (host) setExistingHost(host)
+        if (host) {
+          // If already approved, redirect straight to dashboard
+          if (host.status === 'APPROVED') {
+            router.push('/host/dashboard')
+            return
+          }
+          setExistingHost(host)
+        }
       }
     } catch (error: any) {
       setAuthError(error?.message || 'Authentication failed.')
@@ -181,12 +197,17 @@ export default function BecomeHostPage() {
     return (
       <div className="min-h-screen bg-ivory py-16 px-4 sm:px-6">
         <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8 sm:p-10 text-center border border-[#efe7d8]">
-          <h1 className="text-3xl font-bold text-earth mb-4">Application Submitted</h1>
-          <p className="text-lg text-gray-700 mb-6">Your application is under review.</p>
+          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h1 className="text-3xl font-bold text-earth mb-4">Application Approved!</h1>
+          <p className="text-lg text-gray-700 mb-6">Your host account is now active.</p>
           <p className="text-gray-600 mb-8">
-            We’ll contact you once verification is complete. Only approved hosts can appear publicly and post opportunities.
+            You can now access your Host Dashboard to post opportunities, manage applicants, track bookings, and more.
           </p>
-          <Link href="/" className="btn btn-primary btn-large">Back to Home</Link>
+          <Link href="/host/dashboard" className="btn btn-primary btn-large">Go to Host Dashboard</Link>
         </div>
       </div>
     )
