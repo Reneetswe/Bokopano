@@ -50,15 +50,19 @@ export default function HostDashboard() {
 
   useEffect(() => {
     const init = async () => {
-      // First try to get session (handles both Next.js and CDN Supabase sign-ins)
-      const { data: { session } } = await supabase.auth.getSession()
-      let user = session?.user || null
+      // Wait for Supabase to fully load session from localStorage
+      const session = await new Promise<any>((resolve) => {
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, sess) => {
+          if (event === 'INITIAL_SESSION' || event === 'SIGNED_IN') {
+            subscription.unsubscribe()
+            resolve(sess)
+          }
+        })
+        // Timeout fallback after 3 seconds
+        setTimeout(() => resolve(null), 3000)
+      })
 
-      if (!user) {
-        // Try getUser as fallback
-        const { data: { user: currentUser } } = await supabase.auth.getUser()
-        user = currentUser
-      }
+      const user = session?.user || null
 
       if (!user) { router.push('/become-a-host'); return }
 
