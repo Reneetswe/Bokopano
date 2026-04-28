@@ -418,10 +418,23 @@
             e.preventDefault();
             clearMessages();
             
-            // Redirect to Next.js login page which handles Supabase auth properly
+            const email = document.getElementById('signin-email').value;
+            const password = document.getElementById('signin-password').value;
+            
+            if (!email || !password) {
+                showError('Email and password are required');
+                return;
+            }
+
+            setLoading('signin-btn', true);
+
+            // Store email for the become-a-host page to prefill
+            localStorage.setItem('bokopano_host_prefill', JSON.stringify({ email }));
+            
+            // Redirect to become-a-host which handles Supabase sign-in properly
             showSuccess('Redirecting to sign in...');
             setTimeout(() => {
-                window.location.href = '/volunteer/login?redirect=/host/dashboard';
+                window.location.href = '/become-a-host';
             }, 500);
         }
     </script>

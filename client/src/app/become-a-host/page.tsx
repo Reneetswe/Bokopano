@@ -167,8 +167,8 @@ export default function BecomeHostPage() {
 
         const { data: host } = await getHostByUserId(signedInUserId)
         if (host) {
-          // If already approved, redirect straight to dashboard
-          if (host.status === 'APPROVED') {
+          // If already submitted/approved/under review, redirect to dashboard
+          if (['APPROVED', 'SUBMITTED', 'UNDER_REVIEW'].includes(host.status)) {
             router.push('/host/dashboard')
             return
           }
