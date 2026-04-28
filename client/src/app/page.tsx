@@ -1,15 +1,13 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 
 export default function HomePage() {
-  const router = useRouter()
 
   useEffect(() => {
-    // Redirect to opportunities page
-    router.replace('/opportunities')
-  }, [router])
+    // Redirect to landing page
+    window.location.href = '/home.html'
+  }, [])
 
   return (
     <div className="min-h-screen bg-ivory flex items-center justify-center">
