@@ -445,7 +445,12 @@
                     window.location.href = '/host/dashboard';
                 }, 1000);
             } catch (error) {
-                showError(error.message || 'Failed to sign in. Please check your credentials.');
+                const msg = error.message || '';
+                if (msg.toLowerCase().includes('invalid') || msg.toLowerCase().includes('credentials')) {
+                    showError('No account found with these credentials. Please sign up first using the "Create Account" tab above.');
+                } else {
+                    showError(msg || 'Failed to sign in. Please try again.');
+                }
             } finally {
                 setLoading('signin-btn', false);
             }
