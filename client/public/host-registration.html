@@ -418,44 +418,11 @@
             e.preventDefault();
             clearMessages();
             
-            const email = document.getElementById('signin-email').value;
-            const password = document.getElementById('signin-password').value;
-            
-            setLoading('signin-btn', true);
-            
-            try {
-                const response = await fetch(`${API_BASE}/auth/signin`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-                
-                const data = await response.json();
-                
-                if (!response.ok) {
-                    throw new Error(data.error || 'Sign in failed');
-                }
-                
-                // Store session token
-                localStorage.setItem('bokopano_token', data.token);
-                localStorage.setItem('bokopano_user', JSON.stringify(data.user));
-                if (data.session?.access_token && data.session?.refresh_token) {
-                    localStorage.setItem('bokopano_supabase_session', JSON.stringify({
-                        access_token: data.session.access_token,
-                        refresh_token: data.session.refresh_token
-                    }));
-                }
-                
-                // Redirect to host dashboard
-                showSuccess('Signed in successfully! Redirecting to dashboard...');
-                setTimeout(() => {
-                    window.location.href = '/host/dashboard';
-                }, 1500);
-            } catch (error) {
-                showError(error.message || 'Failed to sign in. Please check your credentials.');
-            } finally {
-                setLoading('signin-btn', false);
-            }
+            // Redirect to Next.js login page which handles Supabase auth properly
+            showSuccess('Redirecting to sign in...');
+            setTimeout(() => {
+                window.location.href = '/volunteer/login?redirect=/host/dashboard';
+            }, 500);
         }
     </script>
 </body>

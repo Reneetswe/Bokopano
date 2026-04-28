@@ -2,11 +2,12 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 
 export default function VolunteerLoginPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const { signIn } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -32,7 +33,8 @@ export default function VolunteerLoginPage() {
         return
       }
 
-      router.push('/volunteer/profile')
+      const redirectTo = searchParams.get('redirect') || '/volunteer/profile'
+      router.push(redirectTo)
     } catch (err: any) {
       setError(err?.message || 'Login failed. Please try again.')
     } finally {
