@@ -81,8 +81,8 @@ export default function HostDashboard() {
       const { data: hostData } = await getHostByUserId(user.id)
       if (!hostData) { router.push('/become-a-host'); return }
 
-      // Only approved hosts see the dashboard
-      if (hostData.status !== 'APPROVED') {
+      // Submitted and approved hosts see the full dashboard
+      if (hostData.status !== 'APPROVED' && hostData.status !== 'SUBMITTED') {
         setHost(hostData)
         setLoading(false)
         return
@@ -122,7 +122,7 @@ export default function HostDashboard() {
   }
 
   // ── Not Approved Gate ──
-  if (host && host.status !== 'APPROVED') {
+  if (host && host.status !== 'APPROVED' && host.status !== 'SUBMITTED') {
     const statusConfig: Record<string, { bg: string; border: string; text: string; title: string; desc: string }> = {
       DRAFT: { bg: 'bg-gray-50', border: 'border-gray-200', text: 'text-gray-700', title: 'Application In Progress', desc: 'Complete your host application to get started.' },
       SUBMITTED: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-700', title: 'Under Review', desc: 'Your application is being reviewed. We\'ll notify you once a decision is made.' },
