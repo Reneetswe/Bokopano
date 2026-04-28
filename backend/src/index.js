@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000
 // Security middleware
 app.use(helmet())
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:8080'],
+  origin: ['http://localhost:3000', 'http://localhost:8080', 'https://bokopano.vercel.app'],
   credentials: true
 }))
 
