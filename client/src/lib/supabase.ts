@@ -1,14 +1,33 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+let supabaseInstance: ReturnType<typeof createClient> | null = null
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    persistSession: true,
-    autoRefreshToken: true,
-  },
-})
+export const supabase = (() => {
+  if (typeof window === 'undefined') {
+    // During build, return a mock client
+    return createClient('https://placeholder.supabase.co', 'placeholder-key', {
+      auth: { persistSession: false, autoRefreshToken: false },
+    }) as any
+  }
+
+  if (!supabaseInstance) {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+      throw new Error('Missing Supabase environment variables')
+    }
+
+    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+      },
+    })
+  }
+
+  return supabaseInstance
+})()
 
 // Auth helper functions
 export const signUp = async (email: string, password: string, metadata?: any) => {
