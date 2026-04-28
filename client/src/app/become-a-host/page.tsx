@@ -85,12 +85,9 @@ export default function BecomeHostPage() {
         setUserId(user.id)
         const { data } = await getHostByUserId(user.id)
         if (data) {
-          // If already submitted/approved/under review, redirect to dashboard
-          if (['APPROVED', 'SUBMITTED', 'UNDER_REVIEW'].includes(data.status)) {
-            router.push('/host/dashboard')
-            return
-          }
-          setExistingHost(data)
+          // Host record exists — dashboard handles all statuses
+          router.push('/host/dashboard')
+          return
         }
       }
 
@@ -167,12 +164,9 @@ export default function BecomeHostPage() {
 
         const { data: host } = await getHostByUserId(signedInUserId)
         if (host) {
-          // If already submitted/approved/under review, redirect to dashboard
-          if (['APPROVED', 'SUBMITTED', 'UNDER_REVIEW'].includes(host.status)) {
-            router.push('/host/dashboard')
-            return
-          }
-          setExistingHost(host)
+          // Host record exists — dashboard handles all statuses
+          router.push('/host/dashboard')
+          return
         }
       }
     } catch (error: any) {
