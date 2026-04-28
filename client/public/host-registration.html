@@ -303,8 +303,12 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script>
         const API_BASE = 'https://bokopano.onrender.com/api';
+        const SUPABASE_URL = 'https://dkhzdytwiwiktkunvozx.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRraHpkeXR3aXdpa3RrdW52b3p4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwOTkxNDQsImV4cCI6MjA5MTY3NTE0NH0.c10Mlo_YErUBF29hsKgmlLOGPkPrra1J80DtNFc0uMA';
+        const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
         function switchTab(mode) {
             const signupTab = document.querySelector('.auth-tab:first-child');
@@ -427,15 +431,24 @@
             }
 
             setLoading('signin-btn', true);
-
-            // Store email for the become-a-host page to prefill
-            localStorage.setItem('bokopano_host_prefill', JSON.stringify({ email }));
             
-            // Redirect to become-a-host which handles Supabase sign-in properly
-            showSuccess('Redirecting to sign in...');
-            setTimeout(() => {
-                window.location.href = '/become-a-host';
-            }, 500);
+            try {
+                const { data, error } = await sbClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
+                
+                if (error) throw error;
+                
+                showSuccess('Signed in! Redirecting to dashboard...');
+                setTimeout(() => {
+                    window.location.href = '/host/dashboard';
+                }, 1000);
+            } catch (error) {
+                showError(error.message || 'Failed to sign in. Please check your credentials.');
+            } finally {
+                setLoading('signin-btn', false);
+            }
         }
     </script>
 </body>
