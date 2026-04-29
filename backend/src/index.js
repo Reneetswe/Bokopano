@@ -112,6 +112,7 @@ app.post('/api/auth/signup', async (req, res) => {
       email,
       password,
       options: {
+        emailRedirectTo: 'https://bokopano.vercel.app/host-registration.html',
         data: {
           full_name,
           country,

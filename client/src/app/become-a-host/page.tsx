@@ -85,9 +85,16 @@ export default function BecomeHostPage() {
         setUserId(user.id)
         const { data } = await getHostByUserId(user.id)
         if (data) {
-          // Host record exists — dashboard handles all statuses
-          router.push('/host/dashboard')
-          return
+          // Only redirect to dashboard if application is submitted/approved/rejected
+          if (data.status !== 'DRAFT') {
+            router.push('/host/dashboard')
+            return
+          }
+          // If DRAFT but has profile data, they started the form - let them continue
+          // If DRAFT but NO profile data, it's a ghost record - ignore it and let them start fresh
+          if (data.host_profiles) {
+            setExistingHost(data)
+          }
         }
       }
 
@@ -164,9 +171,16 @@ export default function BecomeHostPage() {
 
         const { data: host } = await getHostByUserId(signedInUserId)
         if (host) {
-          // Host record exists — dashboard handles all statuses
-          router.push('/host/dashboard')
-          return
+          // Only redirect to dashboard if application is submitted/approved/rejected
+          if (host.status !== 'DRAFT') {
+            router.push('/host/dashboard')
+            return
+          }
+          // If DRAFT but has profile data, they started the form - let them continue
+          // If DRAFT but NO profile data, it's a ghost record - ignore it and let them start fresh
+          if (host.host_profiles) {
+            setExistingHost(host)
+          }
         }
       }
     } catch (error: any) {
@@ -188,6 +202,14 @@ export default function BecomeHostPage() {
   }
 
   if (success) {
+    // Auto-redirect to dashboard after successful submission
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        router.push('/host/dashboard')
+      }, 2000)
+      return () => clearTimeout(timer)
+    }, [])
+
     return (
       <div className="min-h-screen bg-ivory py-16 px-4 sm:px-6">
         <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8 sm:p-10 text-center border border-[#efe7d8]">
@@ -196,12 +218,12 @@ export default function BecomeHostPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-earth mb-4">Application Approved!</h1>
-          <p className="text-lg text-gray-700 mb-6">Your host account is now active.</p>
+          <h1 className="text-3xl font-bold text-earth mb-4">Application Submitted!</h1>
+          <p className="text-lg text-gray-700 mb-6">Redirecting to your dashboard...</p>
           <p className="text-gray-600 mb-8">
             You can now access your Host Dashboard to post opportunities, manage applicants, track bookings, and more.
           </p>
-          <Link href="/host/dashboard" className="btn btn-primary btn-large">Go to Host Dashboard</Link>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-clay mx-auto" />
         </div>
       </div>
     )
