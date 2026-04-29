@@ -37,6 +37,16 @@ export default function BecomeHostPage() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [agreeTerms, setAgreeTerms] = useState(false)
 
+  // Auto-redirect to dashboard after successful submission
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        router.push('/host/dashboard')
+      }, 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [success, router])
+
   useEffect(() => {
     const initialize = async () => {
       if (typeof window !== 'undefined') {
@@ -202,14 +212,6 @@ export default function BecomeHostPage() {
   }
 
   if (success) {
-    // Auto-redirect to dashboard after successful submission
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        router.push('/host/dashboard')
-      }, 2000)
-      return () => clearTimeout(timer)
-    }, [])
-
     return (
       <div className="min-h-screen bg-ivory py-16 px-4 sm:px-6">
         <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8 sm:p-10 text-center border border-[#efe7d8]">
